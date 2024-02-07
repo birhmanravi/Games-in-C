@@ -72,7 +72,7 @@ static int print_board()
 		
 	system("cls");
 	
-	printf("Player 1 is " RED "X" RESET "." "Player 2 is " GRN "O" RESET ".\n\n");
+	printf(RED "Player 1 is X." RESET GRN "Player 2 is O." RESET "\n\n");
 
 	printf("+---+---+---+\n"); //printing top line of board
 
@@ -103,7 +103,9 @@ static int take_input(int playernumber, char player_character)
 	int clear_stdin_buffer = 0;
 	int row = 0, col = 0;
 
-	printf("Player %d, please choose cell for your next move and hit enter: ", playernumber);
+	if (playernumber == 1) printf(RED "Player %d " RESET ",please choose cell for your next move and hit enter: ", playernumber);
+	else printf(GRN "Player %d " RESET ",please choose cell for your next move and hit enter: ", playernumber);
+		
 	while (1)
 	{
 		if (scanf_s("%d%c", &play_pos, &commit_key, 2) != 2 || commit_key != '\n')
@@ -183,13 +185,19 @@ static int game_win_check(char player_character)
 
 static int print_game_result(int result)
 {
-	if (result == 1 || result == 2)
+
+	switch (result)
 	{
-		printf("Player %d wins!!", result);
-	}
-	else
-	{
-		printf("It's a tie!!");
+		case 1:
+			printf(RED "Player %d " RESET "wins!!", result);
+			break;
+
+		case 2:
+			printf(GRN "Player %d " RESET "wins!!", result);
+			break;
+
+		default:
+			printf("It's a tie!!");
 	}
 	
 	return 0;
