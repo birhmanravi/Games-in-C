@@ -103,8 +103,8 @@ static int take_input(int playernumber, char player_character)
 	int clear_stdin_buffer = 0;
 	int row = 0, col = 0;
 
-	if (playernumber == 1) printf(RED "Player %d " RESET ",please choose cell for your next move and hit enter: ", playernumber);
-	else printf(GRN "Player %d " RESET ",please choose cell for your next move and hit enter: ", playernumber);
+	if (playernumber == 1) printf(RED "Player %d" RESET ", please choose cell for your next move and hit enter: ", playernumber);
+	else printf(GRN "Player %d" RESET ", please choose cell for your next move and hit enter: ", playernumber);
 		
 	while (1)
 	{
@@ -121,6 +121,8 @@ static int take_input(int playernumber, char player_character)
 		if (play_pos < 1 || play_pos > 9 || board[row][col] == 'X' || board[row][col] == 'O')
 		{
 			printf("\nWrong move. Please choose from one of the available cells and hit enter: ");
+			
+			while ((clear_stdin_buffer = getchar()) != '\n' && clear_stdin_buffer != EOF) {}
 		}
 		else break;
 	}
