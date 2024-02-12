@@ -116,8 +116,10 @@ static int take_input(int playernumber, char player_character)
 			
 			continue;
 		}
+		
 		row = (play_pos - 1) / 3;
 		col = (play_pos - 1) % 3;
+		
 		if (play_pos < 1 || play_pos > 9 || board[row][col] == 'X' || board[row][col] == 'O')
 		{
 			printf("\nWrong move. Please choose from one of the available cells and hit enter: ");
